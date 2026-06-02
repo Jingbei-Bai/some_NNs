@@ -1,4 +1,3 @@
-﻿import argparse
 import os
 import numpy as np
 import torch
@@ -462,52 +461,29 @@ def train_cpinn_linear_advection(
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="cPINN for 1D linear advection equation")
-    parser.add_argument("--x_lb", type=float, default=-1.0)
-    parser.add_argument("--x_rb", type=float, default=1.0)
-    parser.add_argument("--t_lb", type=float, default=0.0)
-    parser.add_argument("--t_rb", type=float, default=1.0)
-    parser.add_argument("--c", type=float, default=1.0)
-    parser.add_argument("--n_subdomains", type=int, default=2)
-    parser.add_argument("--n_f_per_sub", type=int, default=2000)
-    parser.add_argument("--n_ic_per_sub", type=int, default=300)
-    parser.add_argument("--n_bc", type=int, default=300)
-    parser.add_argument("--n_if", type=int, default=100)
-    parser.add_argument("--adam_epochs", type=int, default=5000)
-    parser.add_argument("--lbfgs_iters", type=int, default=400)
-    parser.add_argument("--lr", type=float, default=1e-3)
-    parser.add_argument("--lambda_ic", type=float, default=10.0)
-    parser.add_argument("--lambda_bc", type=float, default=10.0)
-    parser.add_argument("--lambda_if_u", type=float, default=5.0)
-    parser.add_argument("--lambda_if_flux", type=float, default=20.0)
-    parser.add_argument("--hidden", type=int, default=96)
-    parser.add_argument("--n_layers", type=int, default=4)
-    parser.add_argument("--out_dir", type=str, default=None)
-    args = parser.parse_args()
-
     device = set_device()
     print("device:", device)
     train_cpinn_linear_advection(
-        x_lb=args.x_lb,
-        x_rb=args.x_rb,
-        t_lb=args.t_lb,
-        t_rb=args.t_rb,
-        c=args.c,
-        n_subdomains=args.n_subdomains,
-        n_f_per_sub=args.n_f_per_sub,
-        n_ic_per_sub=args.n_ic_per_sub,
-        n_bc=args.n_bc,
-        n_if=args.n_if,
-        adam_epochs=args.adam_epochs,
-        lbfgs_iters=args.lbfgs_iters,
-        lr=args.lr,
-        lambda_ic=args.lambda_ic,
-        lambda_bc=args.lambda_bc,
-        lambda_if_u=args.lambda_if_u,
-        lambda_if_flux=args.lambda_if_flux,
-        hidden=args.hidden,
-        n_layers=args.n_layers,
-        out_dir=args.out_dir,
+        x_lb=-1.0,
+        x_rb=1.0,
+        t_lb=0.0,
+        t_rb=1.0,
+        c=1.0,
+        n_subdomains=2,
+        n_f_per_sub=2000,
+        n_ic_per_sub=300,
+        n_bc=300,
+        n_if=100,
+        adam_epochs=5000,
+        lbfgs_iters=400,
+        lr=1e-3,
+        lambda_ic=10.0,
+        lambda_bc=10.0,
+        lambda_if_u=5.0,
+        lambda_if_flux=20.0,
+        hidden=96,
+        n_layers=4,
+        out_dir=None,
         device=device,
     )
 

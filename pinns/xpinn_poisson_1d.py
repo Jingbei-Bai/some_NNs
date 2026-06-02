@@ -1,4 +1,3 @@
-﻿import argparse
 import os
 import numpy as np
 import torch
@@ -386,42 +385,24 @@ def train_xpinn_poisson_1d(
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="xPINN for 1D Poisson equation")
-    parser.add_argument("--x_lb", type=float, default=-1.0)
-    parser.add_argument("--x_rb", type=float, default=1.0)
-    parser.add_argument("--n_subdomains", type=int, default=2)
-    parser.add_argument("--n_f_per_sub", type=int, default=1500)
-    parser.add_argument("--n_if", type=int, default=8)
-    parser.add_argument("--adam_epochs", type=int, default=5000)
-    parser.add_argument("--lbfgs_iters", type=int, default=400)
-    parser.add_argument("--lr", type=float, default=1e-3)
-    parser.add_argument("--lambda_bc", type=float, default=20.0)
-    parser.add_argument("--lambda_if_u", type=float, default=20.0)
-    parser.add_argument("--lambda_if_flux", type=float, default=20.0)
-    parser.add_argument("--lambda_if_r", type=float, default=1.0)
-    parser.add_argument("--hidden", type=int, default=64)
-    parser.add_argument("--n_layers", type=int, default=4)
-    parser.add_argument("--out_dir", type=str, default=None)
-    args = parser.parse_args()
-
     device = set_device()
     print("device:", device)
     train_xpinn_poisson_1d(
-        x_lb=args.x_lb,
-        x_rb=args.x_rb,
-        n_subdomains=args.n_subdomains,
-        n_f_per_sub=args.n_f_per_sub,
-        n_if=args.n_if,
-        adam_epochs=args.adam_epochs,
-        lbfgs_iters=args.lbfgs_iters,
-        lr=args.lr,
-        lambda_bc=args.lambda_bc,
-        lambda_if_u=args.lambda_if_u,
-        lambda_if_flux=args.lambda_if_flux,
-        lambda_if_r=args.lambda_if_r,
-        hidden=args.hidden,
-        n_layers=args.n_layers,
-        out_dir=args.out_dir,
+        x_lb=-1.0,
+        x_rb=1.0,
+        n_subdomains=2,
+        n_f_per_sub=1500,
+        n_if=8,
+        adam_epochs=5000,
+        lbfgs_iters=400,
+        lr=1e-3,
+        lambda_bc=20.0,
+        lambda_if_u=20.0,
+        lambda_if_flux=20.0,
+        lambda_if_r=1.0,
+        hidden=64,
+        n_layers=4,
+        out_dir=None,
         device=device,
     )
 
